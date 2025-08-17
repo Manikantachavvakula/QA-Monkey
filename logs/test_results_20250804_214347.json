@@ -1,0 +1,19 @@
+{
+  "session_id": "20250804_214347",
+  "stats": {
+    "total_tests": 1,
+    "passed": 0,
+    "failed": 1,
+    "errors": 0
+  },
+  "results": [
+    {
+      "timestamp": "2025-08-04T21:46:48.818737",
+      "url": "https://example.com",
+      "action": "input",
+      "status": "FAIL",
+      "error_message": null,
+      "screenshot_path": null
+    }
+  ]
+}

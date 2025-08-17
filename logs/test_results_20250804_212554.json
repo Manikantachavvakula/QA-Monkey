@@ -1,0 +1,35 @@
+{
+  "session_id": "20250804_212554",
+  "stats": {
+    "total_tests": 3,
+    "passed": 0,
+    "failed": 3,
+    "errors": 0
+  },
+  "results": [
+    {
+      "timestamp": "2025-08-04T21:28:25.812670",
+      "url": "https://example.com",
+      "action": "input",
+      "status": "FAIL",
+      "error_message": null,
+      "screenshot_path": null
+    },
+    {
+      "timestamp": "2025-08-04T21:29:27.144677",
+      "url": "https://example.com",
+      "action": "input",
+      "status": "FAIL",
+      "error_message": null,
+      "screenshot_path": null
+    },
+    {
+      "timestamp": "2025-08-04T21:30:28.823545",
+      "url": "https://example.com",
+      "action": "input",
+      "status": "FAIL",
+      "error_message": null,
+      "screenshot_path": null
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+Timestamp,URL,Action,Status,Error,Screenshot
+2025-08-04T21:28:25.812670,https://example.com,input,FAIL,,
+2025-08-04T21:29:27.144677,https://example.com,input,FAIL,,
+2025-08-04T21:30:28.823545,https://example.com,input,FAIL,,
