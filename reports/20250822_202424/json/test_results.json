@@ -1,0 +1,79 @@
+{
+  "session_id": "20250822_202424",
+  "generated_at": "2025-08-22T20:25:34.032925",
+  "statistics": {
+    "total_actions": 6,
+    "successful_actions": 6,
+    "failed_actions": 0,
+    "errors": 0,
+    "success_rate": 100.0
+  },
+  "test_results": [
+    {
+      "timestamp": "2025-08-22T20:24:28.521361",
+      "action_type": "scroll",
+      "element_info": "Scroll up",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:24:28.824917",
+      "action_type": "keypress",
+      "element_info": "Key press: End",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:24:33.997552",
+      "action_type": "scroll",
+      "element_info": "Scroll to top",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:25:04.750847",
+      "action_type": "hover",
+      "element_info": "Hover on <button> 'Submit order'",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:25:33.657755",
+      "action_type": "input",
+      "element_info": "<input id='username'> = 'Monkey Testing Input'",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:25:33.852147",
+      "action_type": "keypress",
+      "element_info": "Key press: Space",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    }
+  ],
+  "summary": {
+    "total_tests": 6,
+    "passed": 6,
+    "failed": 0,
+    "success_rate_percent": 100.0
+  },
+  "screenshot_stats": {
+    "total_screenshots": 0,
+    "base_directory": "screenshots/20250822_202424",
+    "error_directory": "screenshots/20250822_202424/errors",
+    "action_directory": "screenshots/20250822_202424/actions"
+  }
+}

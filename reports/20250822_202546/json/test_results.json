@@ -1,0 +1,61 @@
+{
+  "session_id": "20250822_202546",
+  "generated_at": "2025-08-22T20:27:09.820854",
+  "statistics": {
+    "total_actions": 4,
+    "successful_actions": 4,
+    "failed_actions": 0,
+    "errors": 0,
+    "success_rate": 100.0
+  },
+  "test_results": [
+    {
+      "timestamp": "2025-08-22T20:26:42.201501",
+      "action_type": "hover",
+      "element_info": "Hover on <button class='yt-spec-button-shape'>",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:26:42.715715",
+      "action_type": "keypress",
+      "element_info": "Key press: Tab",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:27:08.888180",
+      "action_type": "hover",
+      "element_info": "Hover on <a class='footer-social-icon d'> 'GitHub on LinkedIn'",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:27:09.377215",
+      "action_type": "keypress",
+      "element_info": "Key press: Escape",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    }
+  ],
+  "summary": {
+    "total_tests": 4,
+    "passed": 4,
+    "failed": 0,
+    "success_rate_percent": 100.0
+  },
+  "screenshot_stats": {
+    "total_screenshots": 0,
+    "base_directory": "screenshots/20250822_202546",
+    "error_directory": "screenshots/20250822_202546/errors",
+    "action_directory": "screenshots/20250822_202546/actions"
+  }
+}

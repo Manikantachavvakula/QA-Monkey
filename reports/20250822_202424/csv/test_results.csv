@@ -1,0 +1,7 @@
+Timestamp,Action Type,Element Info,Status,Error Message,Screenshot Path
+2025-08-22T20:24:28.521361,scroll,Scroll up,SUCCESS,,
+2025-08-22T20:24:28.824917,keypress,Key press: End,SUCCESS,,
+2025-08-22T20:24:33.997552,scroll,Scroll to top,SUCCESS,,
+2025-08-22T20:25:04.750847,hover,Hover on <button> 'Submit order',SUCCESS,,
+2025-08-22T20:25:33.657755,input,<input id='username'> = 'Monkey Testing Input',SUCCESS,,
+2025-08-22T20:25:33.852147,keypress,Key press: Space,SUCCESS,,

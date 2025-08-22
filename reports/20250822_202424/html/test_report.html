@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA-Monkey Test Report - 20250822_202424</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 20px; }
+        .header h1 { margin: 0; font-size: 2.5em; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; }
+        .stat-number { font-size: 2.5em; font-weight: bold; margin-bottom: 10px; }
+        .success { color: #27ae60; }
+        .danger { color: #e74c3c; }
+        .warning { color: #f39c12; }
+        .info { color: #3498db; }
+        .results-table { width: 100%; border-collapse: collapse; }
+        .results-table th, .results-table td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        .results-table th { background: #f8f9fa; font-weight: bold; }
+        .status-badge { padding: 4px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
+        .status-success { background: #d4edda; color: #155724; }
+        .status-failed { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐒 QA-Monkey Test Report</h1>
+            <p><strong>Session:</strong> 20250822_202424</p>
+            <p><strong>Generated:</strong> 2025-08-22 20:25:34</p>
+            <p><strong>Framework:</strong> Python-Selenium with POM Design</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number info">6</div>
+                <div>Total Tests</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number success">6</div>
+                <div>Passed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number danger">0</div>
+                <div>Failed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number success">100.0%</div>
+                <div>Success Rate</div>
+            </div>
+        </div>
+        
+        <h2>📊 Action Analysis</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 30px;">
+
+            <div style="border: 1px solid #ddd; border-radius: 6px; padding: 15px; background: white;">
+                <div style="font-weight: bold; margin-bottom: 10px; color: #495057;">SCROLL Actions</div>
+                <p>Total: 2 | Passed: 2 | Failed: 0</p>
+                <div style="background: #e9ecef; border-radius: 4px; overflow: hidden; height: 20px;">
+                    <div style="height: 100%; background: linear-gradient(90deg, #28a745, #20c997); width: 100.0%;"></div>
+                </div>
+                <small>100.0% success rate</small>
+            </div>
+
+            <div style="border: 1px solid #ddd; border-radius: 6px; padding: 15px; background: white;">
+                <div style="font-weight: bold; margin-bottom: 10px; color: #495057;">KEYPRESS Actions</div>
+                <p>Total: 2 | Passed: 2 | Failed: 0</p>
+                <div style="background: #e9ecef; border-radius: 4px; overflow: hidden; height: 20px;">
+                    <div style="height: 100%; background: linear-gradient(90deg, #28a745, #20c997); width: 100.0%;"></div>
+                </div>
+                <small>100.0% success rate</small>
+            </div>
+
+            <div style="border: 1px solid #ddd; border-radius: 6px; padding: 15px; background: white;">
+                <div style="font-weight: bold; margin-bottom: 10px; color: #495057;">HOVER Actions</div>
+                <p>Total: 1 | Passed: 1 | Failed: 0</p>
+                <div style="background: #e9ecef; border-radius: 4px; overflow: hidden; height: 20px;">
+                    <div style="height: 100%; background: linear-gradient(90deg, #28a745, #20c997); width: 100.0%;"></div>
+                </div>
+                <small>100.0% success rate</small>
+            </div>
+
+            <div style="border: 1px solid #ddd; border-radius: 6px; padding: 15px; background: white;">
+                <div style="font-weight: bold; margin-bottom: 10px; color: #495057;">INPUT Actions</div>
+                <p>Total: 1 | Passed: 1 | Failed: 0</p>
+                <div style="background: #e9ecef; border-radius: 4px; overflow: hidden; height: 20px;">
+                    <div style="height: 100%; background: linear-gradient(90deg, #28a745, #20c997); width: 100.0%;"></div>
+                </div>
+                <small>100.0% success rate</small>
+            </div>
+
+        </div>
+        
+        <h2>🔍 Detailed Test Results</h2>
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Action</th>
+                    <th>Element</th>
+                    <th>Status</th>
+                    <th>Error</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>20:24:28</td>
+                    <td><strong>SCROLL</strong></td>
+                    <td>Scroll up</td>
+                    <td><span class="status-badge status-success">SUCCESS</span></td>
+                    <td>-</td>
+                </tr>
+
+                <tr>
+                    <td>20:24:28</td>
+                    <td><strong>KEYPRESS</strong></td>
+                    <td>Key press: End</td>
+                    <td><span class="status-badge status-success">SUCCESS</span></td>
+                    <td>-</td>
+                </tr>
+
+                <tr>
+                    <td>20:24:33</td>
+                    <td><strong>SCROLL</strong></td>
+                    <td>Scroll to top</td>
+                    <td><span class="status-badge status-success">SUCCESS</span></td>
+                    <td>-</td>
+                </tr>
+
+                <tr>
+                    <td>20:25:04</td>
+                    <td><strong>HOVER</strong></td>
+                    <td>Hover on <button> 'Submit order'</td>
+                    <td><span class="status-badge status-success">SUCCESS</span></td>
+                    <td>-</td>
+                </tr>
+
+                <tr>
+                    <td>20:25:33</td>
+                    <td><strong>INPUT</strong></td>
+                    <td><input id='username'> = 'Monkey Testing Input'</td>
+                    <td><span class="status-badge status-success">SUCCESS</span></td>
+                    <td>-</td>
+                </tr>
+
+                <tr>
+                    <td>20:25:33</td>
+                    <td><strong>KEYPRESS</strong></td>
+                    <td>Key press: Space</td>
+                    <td><span class="status-badge status-success">SUCCESS</span></td>
+                    <td>-</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

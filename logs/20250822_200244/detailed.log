@@ -1,0 +1,21 @@
+[2025-08-22 20:04:52] INFO - qa_monkey.actions - KEYPRESS on Key press: Page Down - SUCCESS
+[2025-08-22 20:05:35] INFO - qa_monkey.actions - HOVER on Hover on <button id='button' class='style-scope yt-icon-'> - SUCCESS
+[2025-08-22 20:05:46] INFO - qa_monkey.actions - SCROLL on Scroll to top - SUCCESS
+[2025-08-22 20:05:47] INFO - qa_monkey.actions - KEYPRESS on Key press: Enter - SUCCESS
+[2025-08-22 20:06:35] INFO - qa_monkey.actions - CLICK on <a id='endpoint' class='yt-simple-endpoint s'> 'Subscriptions' - SUCCESS
+[2025-08-22 20:07:18] INFO - qa_monkey.actions - HOVER on Hover on <a id='endpoint' class='yt-simple-endpoint s'> 'Shorts' - SUCCESS
+[2025-08-22 20:07:24] INFO - qa_monkey.actions - SCROLL on Scroll left - SUCCESS
+[2025-08-22 20:08:00] INFO - qa_monkey.actions - HOVER on Hover on <a class='Primer_Brand__Button'> 'Financial services
+M' - SUCCESS
+[2025-08-22 20:08:49] INFO - qa_monkey.actions - CLICK on <button class='yt-spec-button-shape'> - SUCCESS
+[2025-08-22 20:08:50] INFO - qa_monkey.actions - KEYPRESS on Key press: Enter - SUCCESS
+[2025-08-22 20:08:55] INFO - qa_monkey.actions - SCROLL on Scroll up - SUCCESS
+[2025-08-22 20:08:56] INFO - qa_monkey.actions - SCROLL on Scroll right - SUCCESS
+[2025-08-22 20:09:45] INFO - qa_monkey.actions - CLICK on <a class='footer-social-icon d'> 'GitHub on X' - SUCCESS - Screenshot: screenshots/20250822_200244/actions\200945_006_click_github.com.png
+[2025-08-22 20:09:46] INFO - qa_monkey.actions - SCROLL on Scroll left - SUCCESS
+[2025-08-22 20:10:34] INFO - qa_monkey.actions - CLICK on <a id='endpoint' class='yt-simple-endpoint s'> 'Shorts' - SUCCESS
+[2025-08-22 20:10:35] INFO - qa_monkey.actions - SCROLL on Scroll to bottom - SUCCESS
+[2025-08-22 20:10:41] INFO - qa_monkey.actions - SCROLL on Scroll left - SUCCESS
+[2025-08-22 20:10:42] INFO - qa_monkey.actions - KEYPRESS on Key press: End - SUCCESS
+[2025-08-22 20:10:49] INFO - qa_monkey.actions - SCROLL on Scroll left - SUCCESS
+[2025-08-22 20:11:32] INFO - qa_monkey.actions - HOVER on Hover on <button class='yt-spec-button-shape'> - SUCCESS

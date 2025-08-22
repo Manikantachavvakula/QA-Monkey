@@ -1,0 +1,205 @@
+{
+  "session_id": "20250822_200244",
+  "generated_at": "2025-08-22T20:11:33.267149",
+  "statistics": {
+    "total_actions": 20,
+    "successful_actions": 20,
+    "failed_actions": 0,
+    "errors": 0,
+    "success_rate": 100.0
+  },
+  "test_results": [
+    {
+      "timestamp": "2025-08-22T20:04:52.719275",
+      "action_type": "keypress",
+      "element_info": "Key press: Page Down",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:05:35.925633",
+      "action_type": "hover",
+      "element_info": "Hover on <button id='button' class='style-scope yt-icon-'>",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:05:46.633784",
+      "action_type": "scroll",
+      "element_info": "Scroll to top",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:05:47.813783",
+      "action_type": "keypress",
+      "element_info": "Key press: Enter",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:06:35.960701",
+      "action_type": "click",
+      "element_info": "<a id='endpoint' class='yt-simple-endpoint s'> 'Subscriptions'",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:07:18.989425",
+      "action_type": "hover",
+      "element_info": "Hover on <a id='endpoint' class='yt-simple-endpoint s'> 'Shorts'",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:07:24.426476",
+      "action_type": "scroll",
+      "element_info": "Scroll left",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:08:00.993427",
+      "action_type": "hover",
+      "element_info": "Hover on <a class='Primer_Brand__Button'> 'Financial services\nM'",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:08:49.507898",
+      "action_type": "click",
+      "element_info": "<button class='yt-spec-button-shape'>",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:08:50.812570",
+      "action_type": "keypress",
+      "element_info": "Key press: Enter",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:08:55.722786",
+      "action_type": "scroll",
+      "element_info": "Scroll up",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:08:56.608464",
+      "action_type": "scroll",
+      "element_info": "Scroll right",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:09:45.301656",
+      "action_type": "click",
+      "element_info": "<a class='footer-social-icon d'> 'GitHub on X'",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": "screenshots/20250822_200244/actions\\200945_006_click_github.com.png",
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:09:46.119684",
+      "action_type": "scroll",
+      "element_info": "Scroll left",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:10:34.983374",
+      "action_type": "click",
+      "element_info": "<a id='endpoint' class='yt-simple-endpoint s'> 'Shorts'",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:10:35.789845",
+      "action_type": "scroll",
+      "element_info": "Scroll to bottom",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:10:41.148169",
+      "action_type": "scroll",
+      "element_info": "Scroll left",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:10:42.574957",
+      "action_type": "keypress",
+      "element_info": "Key press: End",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:10:49.119273",
+      "action_type": "scroll",
+      "element_info": "Scroll left",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    },
+    {
+      "timestamp": "2025-08-22T20:11:32.024526",
+      "action_type": "hover",
+      "element_info": "Hover on <button class='yt-spec-button-shape'>",
+      "result": true,
+      "error_msg": null,
+      "screenshot_path": null,
+      "status": "SUCCESS"
+    }
+  ],
+  "summary": {
+    "total_tests": 20,
+    "passed": 20,
+    "failed": 0,
+    "success_rate_percent": 100.0
+  },
+  "screenshot_stats": {
+    "total_screenshots": 1,
+    "base_directory": "screenshots/20250822_200244",
+    "error_directory": "screenshots/20250822_200244/errors",
+    "action_directory": "screenshots/20250822_200244/actions"
+  }
+}

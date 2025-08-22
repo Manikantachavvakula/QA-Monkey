@@ -1,0 +1,6 @@
+[2025-08-22 20:24:28] INFO - SCROLL on Scroll up - SUCCESS
+[2025-08-22 20:24:28] INFO - KEYPRESS on Key press: End - SUCCESS
+[2025-08-22 20:24:33] INFO - SCROLL on Scroll to top - SUCCESS
+[2025-08-22 20:25:04] INFO - HOVER on Hover on <button> 'Submit order' - SUCCESS
+[2025-08-22 20:25:33] INFO - INPUT on <input id='username'> = 'Monkey Testing Input' - SUCCESS
+[2025-08-22 20:25:33] INFO - KEYPRESS on Key press: Space - SUCCESS

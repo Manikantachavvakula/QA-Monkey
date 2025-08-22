@@ -1,278 +1,308 @@
 import random
 import time
 from datetime import datetime
-from driver_manager import DriverManager
-from element_locator import ElementLocator
-from monkey_actions import MonkeyActions
-from test_config import TestConfig
-from simple_logger import SimpleLogger
-from screenshot_handler import ScreenshotHandler
-from popup_handler import PopupHandler
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import *
+import logging
 
-class MonkeyTester:
-    """Main monkey testing orchestrator"""
+from base_page import BasePage
+from pages.login_page import LoginPage
+from pages.search_page import SearchPage
+
+logger = logging.getLogger(__name__)
+
+class EnhancedMonkeyTester:
+    """Enhanced Monkey Tester using Page Object Model"""
     
-    def __init__(self):
-        self.driver_manager = DriverManager()
-        self.driver = None
-        self.locator = None
-        self.actions = None
-        self.start_time = None
-        self.session_id = datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.logger = SimpleLogger(self.session_id)
-        self.screenshot_handler = None
-        self.popup_handler = None
-        
-        self.stats = {
-            "total_actions": 0,
-            "successful_clicks": 0,
-            "successful_scrolls": 0,
-            "successful_inputs": 0,
-            "successful_hovers": 0,
-            "errors": 0,
-            "urls_tested": 0,
-            "urls_failed": 0
+    def __init__(self, driver, enhanced_logger, screenshot_manager):
+        self.driver = driver
+        self.logger = enhanced_logger
+        self.screenshot_manager = screenshot_manager
+        self.current_page = None
+        self.action_weights = {
+            'click': 0.35,
+            'input': 0.25,
+            'scroll': 0.20,
+            'hover': 0.15,
+            'keypress': 0.05
         }
     
-    def setup(self, headless=False):
-        """Initialize all components"""
-        print("🔧 Setting up QA-Monkey...")
-        
-        self.driver = self.driver_manager.setup_driver(headless)
-        self.locator = ElementLocator(self.driver)
-        self.actions = MonkeyActions(self.driver, self.locator)
-        self.start_time = datetime.now()
-        
-        print("✅ Setup complete!")
+    def initialize_page_object(self, url):
+        """Initialize appropriate page object based on URL"""
+        try:
+            if 'login' in url.lower() or 'signin' in url.lower():
+                self.current_page = LoginPage(self.driver)
+                logger.info("Initialized LoginPage object")
+            elif 'google' in url.lower() or 'search' in url.lower():
+                self.current_page = SearchPage(self.driver)
+                logger.info("Initialized SearchPage object")
+            else:
+                self.current_page = BasePage(self.driver)
+                logger.info("Initialized BasePage object")
+                
+            return True
+        except Exception as e:
+            logger.error(f"Failed to initialize page object: {e}")
+            return False
     
-    def run_single_test(self, url, iterations=None):
-        """Run monkey test on a single URL"""
-        if iterations is None:
-            iterations = TestConfig.DEFAULT_ITERATIONS
-            
-        print(f"\n{'='*60}")
-        print(f"🌐 Testing: {url}")
-        print(f"🎯 Actions: {iterations}")
-        print(f"{'='*60}")
+    def perform_page_specific_actions(self, url):
+        """Perform page-specific actions using POM"""
+        if not self.current_page:
+            return False
+        
+        page_actions_performed = False
         
         try:
-            print("📡 Loading page...")
-            self.driver.get(url)
-            time.sleep(TestConfig.PAGE_LOAD_WAIT)
-            
-            # Handle popups immediately after page load
-            try:
-                if self.popup_handler:
-                    popup_closed = self.popup_handler.close_popups()
-                    if popup_closed:
-                        time.sleep(1)  # Wait a bit after closing popups
+            # Login page specific actions
+            if isinstance(self.current_page, LoginPage):
+                if random.choice([True, False]):  # 50% chance
+                    result = self.current_page.login("test_user", "test_password")
+                    self.logger.log_page_action("LoginPage", "login", result)
+                    page_actions_performed = True
                     
-                    # Try GDPR banners specifically
-                    self.popup_handler.handle_gdpr_banners()
-                    
-                    # If popups are still there, force close them
-                    time.sleep(2)  # Wait to see if popups appear
-                    self.popup_handler.force_close_all_modals()
-                
-            except Exception as e:
-                print(f"⚠️ Popup handling failed: {e}")
+                if random.choice([True, False]):  # 50% chance
+                    result = self.current_page.click_signup()
+                    self.logger.log_page_action("LoginPage", "click_signup", result)
+                    page_actions_performed = True
             
-            page_title = self.driver.title[:50] + "..." if len(self.driver.title) > 50 else self.driver.title
-            print(f"📄 Page loaded: {page_title}")
+            # Search page specific actions
+            elif isinstance(self.current_page, SearchPage):
+                search_queries = ["selenium testing", "automation", "python", "QA testing", "web scraping"]
+                query = random.choice(search_queries)
+                result = self.current_page.search(query)
+                self.logger.log_page_action("SearchPage", f"search({query})", result)
+                page_actions_performed = True
+                
+                # Wait and check results
+                if result:
+                    time.sleep(2)
+                    count = self.current_page.get_search_results_count()
+                    logger.info(f"Search returned {count} results")
             
-            self.stats["urls_tested"] += 1
-            
-            for i in range(iterations):
-                # Periodically check for and close popups during testing
-                if i % 2 == 0:  # Every 2nd action (more frequent)
-                    try:
-                        if self.popup_handler:
-                            self.popup_handler.close_popups()
-                            # If regular popup closing fails, force close
-                            if i == 0:  # First action, be more aggressive
-                                self.popup_handler.force_close_all_modals()
-                    except:
-                        pass
-                
-                self.perform_random_action(i + 1, iterations, url)
-                delay = random.uniform(TestConfig.MIN_DELAY, TestConfig.MAX_DELAY)
-                time.sleep(delay)
-                
-            print(f"✅ Completed testing {url}")
-                
         except Exception as e:
-            print(f"❌ Error with {url}: {str(e)[:60]}...")
-            self.stats["errors"] += 1
-            self.stats["urls_failed"] += 1
-    
-    def perform_random_action(self, current, total, url):
-        """Execute a single random action"""
-        actions = ["click", "scroll", "input", "hover"]
-        weights = [
-            TestConfig.ACTION_WEIGHTS["click"],
-            TestConfig.ACTION_WEIGHTS["scroll"],
-            TestConfig.ACTION_WEIGHTS["input"],
-            TestConfig.ACTION_WEIGHTS["hover"]
-        ]
+            logger.error(f"Page-specific action failed: {e}")
+            if self.screenshot_manager:
+                self.screenshot_manager.capture_error_screenshot("page_action", str(e), url)
         
-        action = random.choices(actions, weights=weights)[0]
-        self.stats["total_actions"] += 1
+        return page_actions_performed
+    
+    def perform_random_monkey_action(self, url):
+        """Perform random monkey testing action"""
+        action_type = random.choices(
+            list(self.action_weights.keys()),
+            weights=list(self.action_weights.values())
+        )[0]
         
         success = False
         error_msg = None
         screenshot_path = None
+        element_info = "unknown"
         
         try:
-            if action == "click":
-                success = self.actions.random_click()
-                if success:
-                    self.stats["successful_clicks"] += 1
-                    if self.screenshot_handler:
-                        screenshot_path = self.screenshot_handler.capture_screenshot(url, action)
-                    
-            elif action == "scroll":
-                success = self.actions.random_scroll()
-                if success:
-                    self.stats["successful_scrolls"] += 1
-                    
-            elif action == "input":
-                success = self.actions.random_input()
-                if success:
-                    self.stats["successful_inputs"] += 1
-                    if self.screenshot_handler:
-                        screenshot_path = self.screenshot_handler.capture_screenshot(url, action)
-                    
-            elif action == "hover":
-                success = self.actions.random_hover()
-                if success:
-                    self.stats["successful_hovers"] += 1
+            if action_type == 'click':
+                success, element_info = self._random_click()
+            elif action_type == 'input':
+                success, element_info = self._random_input()
+            elif action_type == 'scroll':
+                success, element_info = self._random_scroll()
+            elif action_type == 'hover':
+                success, element_info = self._random_hover()
+            elif action_type == 'keypress':
+                success, element_info = self._random_keypress()
             
-            # Log the result
-            status = "PASS" if success else "FAIL"
-            self.logger.log_test_result(url, action, status, error_msg, screenshot_path)
-            
-            status_icon = "✅" if success else "❌"
-            progress = f"[{current:2d}/{total}]"
-            action_text = f"{action.upper():<8}"
-            
-            print(f"{progress} {action_text} {status_icon}")
-            
+            # Capture screenshot for successful actions (occasionally)
+            if success and random.random() < 0.1:  # 10% chance
+                screenshot_path = self.screenshot_manager.capture_action_screenshot(action_type, url)
+                
         except Exception as e:
+            success = False
             error_msg = str(e)
-            if self.screenshot_handler:
-                screenshot_path = self.screenshot_handler.capture_screenshot(url, action, True, error_msg)
-            
-            # Log error
-            self.logger.log_test_result(url, action, "ERROR", error_msg, screenshot_path)
-            self.logger.log_error(url, action, error_msg, screenshot_path)
-            
-            print(f"[{current:2d}/{total}] {action.upper():<8} ❌ Error: {error_msg[:40]}...")
-            self.stats["errors"] += 1
-    
-    def run_category_test(self, category="comprehensive"):
-        """Run tests based on predefined categories"""
-        config = TestConfig.get_test_config(category)
-        print(f"🐒 Starting QA-Monkey - {category.upper()} Test")
-        print(f"📊 URLs: {len(config['urls'])}")
-        print(f"🎯 Actions per URL: {config['iterations']}")
+            screenshot_path = self.screenshot_manager.capture_error_screenshot(action_type, error_msg, url)
+            logger.error(f"Action {action_type} failed: {error_msg}")
         
-        self.run_multiple_tests(config['urls'], config['iterations'])
-    
-    def run_multiple_tests(self, urls=None, iterations_per_url=None):
-        """Run tests on multiple URLs"""
-        if urls is None:
-            urls = TestConfig.URLS
-        if iterations_per_url is None:
-            iterations_per_url = TestConfig.DEFAULT_ITERATIONS
+        # Log the action
+        self.logger.log_action(action_type, element_info, success, error_msg, screenshot_path)
         
-        print(f"\n🐒 QA-Monkey Testing Started!")
-        print(f"⏰ Start time: {self.start_time.strftime('%H:%M:%S')}")
-        print(f"🌐 URLs to test: {len(urls)}")
-        print(f"🎯 Actions per URL: {iterations_per_url}")
+        return success
+    
+    def _random_click(self):
+        """Perform random click action"""
+        if not self.current_page:
+            return False, "No page object"
+        
+        elements = self.current_page.get_clickable_elements()
+        if not elements:
+            return False, "No clickable elements found"
+        
+        element = random.choice(elements)
+        element_info = self._get_element_info(element)
         
         try:
-            for i, url in enumerate(urls, 1):
-                print(f"\n🔄 Progress: {i}/{len(urls)} URLs")
-                try:
-                    self.run_single_test(url, iterations_per_url)
-                except KeyboardInterrupt:
-                    print("\n⚠️  Test interrupted by user")
-                    break
-                except Exception as e:
-                    print(f"⚠️  Skipping {url} due to error: {str(e)[:50]}...")
-                    self.stats["urls_failed"] += 1
-                    continue
-        finally:
-            self.print_final_stats()
-    
-    def print_final_stats(self):
-        """Print comprehensive test statistics"""
-        end_time = datetime.now()
-        duration = end_time - self.start_time if self.start_time else None
-        
-        print(f"\n{'='*60}")
-        print("🐒 QA-MONKEY TEST RESULTS")
-        print(f"{'='*60}")
-        
-        if duration:
-            print(f"⏱️  Duration:           {str(duration).split('.')[0]}")
-        
-        print(f"🌐 URLs tested:        {self.stats['urls_tested']}")
-        print(f"❌ URLs failed:        {self.stats['urls_failed']}")
-        print(f"🎯 Total actions:      {self.stats['total_actions']}")
-        print(f"\n📊 ACTION BREAKDOWN:")
-        print(f"   Clicks:             {self.stats['successful_clicks']}")
-        print(f"   Scrolls:            {self.stats['successful_scrolls']}")
-        print(f"   Inputs:             {self.stats['successful_inputs']}")
-        print(f"   Hovers:             {self.stats['successful_hovers']}")
-        print(f"   Errors:             {self.stats['errors']}")
-        
-        # Calculate success rate
-        total_successful = (
-            self.stats['successful_clicks'] + 
-            self.stats['successful_scrolls'] + 
-            self.stats['successful_inputs'] +
-            self.stats['successful_hovers']
-        )
-        
-        if self.stats['total_actions'] > 0:
-            success_rate = (total_successful / self.stats['total_actions']) * 100
-            print(f"\n📈 Success rate:       {success_rate:.1f}%")
+            # Scroll element into view
+            self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
+            time.sleep(0.2)
             
-            if success_rate >= 80:
-                print("🎉 Excellent success rate!")
-            elif success_rate >= 60:
-                print("👍 Good success rate!")
-            else:
-                print("⚠️  Consider checking website compatibility")
-        
-        print(f"{'='*60}")
+            # Try normal click first
+            try:
+                element.click()
+                return True, element_info
+            except ElementClickInterceptedException:
+                # Fallback to JavaScript click
+                self.driver.execute_script("arguments[0].click();", element)
+                return True, f"{element_info} (JS click)"
+                
+        except Exception as e:
+            return False, f"{element_info} - Error: {str(e)}"
     
-    def cleanup(self):
-        """Clean up resources and generate reports"""
-        print("🧹 Cleaning up...")
+    def _random_input(self):
+        """Perform random input action"""
+        if not self.current_page:
+            return False, "No page object"
         
-        # Save all logs and generate reports
+        elements = self.current_page.get_input_elements()
+        if not elements:
+            return False, "No input elements found"
+        
+        element = random.choice(elements)
+        element_info = self._get_element_info(element)
+        
         try:
-            files = self.logger.save_logs_to_file()
-            html_report = self.logger.generate_html_report()
+            # Scroll element into view
+            self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
+            time.sleep(0.2)
             
-            print(f"Reports generated:")
-            print(f"   JSON: {files['json_file']}")
-            print(f"   CSV: {files['csv_file']}")
-            print(f"   HTML: {html_report}")
-            if files.get('error_file'):
-                print(f"   Errors: {files['error_file']}")
+            # Generate appropriate test data
+            test_data = self._generate_test_data(element)
             
-            if self.screenshot_handler:
-                screenshot_stats = self.screenshot_handler.get_stats()
-                print(f"Screenshots: {screenshot_stats['total_screenshots']} saved to {screenshot_stats['directory']}")
+            element.clear()
+            element.send_keys(test_data)
             
-            # Print summary
-            print(self.logger.get_summary())
+            return True, f"{element_info} = '{test_data}'"
             
         except Exception as e:
-            print(f"Warning: Could not save reports: {e}")
+            return False, f"{element_info} - Error: {str(e)}"
+    
+    def _random_scroll(self):
+        """Perform random scroll action"""
+        scroll_actions = [
+            ("window.scrollBy(0, 300)", "Scroll down"),
+            ("window.scrollBy(0, -300)", "Scroll up"),
+            ("window.scrollTo(0, 0)", "Scroll to top"),
+            ("window.scrollTo(0, document.body.scrollHeight)", "Scroll to bottom"),
+            ("window.scrollBy(200, 0)", "Scroll right"),
+            ("window.scrollBy(-200, 0)", "Scroll left")
+        ]
         
-        self.driver_manager.quit_driver()
-        print("✅ Cleanup complete!")
+        script, description = random.choice(scroll_actions)
+        
+        try:
+            self.driver.execute_script(script)
+            return True, description
+        except Exception as e:
+            return False, f"{description} - Error: {str(e)}"
+    
+    def _random_hover(self):
+        """Perform random hover action"""
+        if not self.current_page:
+            return False, "No page object"
+        
+        elements = self.current_page.get_clickable_elements()
+        if not elements:
+            return False, "No hoverable elements found"
+        
+        element = random.choice(elements)
+        element_info = self._get_element_info(element)
+        
+        try:
+            actions = ActionChains(self.driver)
+            actions.move_to_element(element).perform()
+            return True, f"Hover on {element_info}"
+        except Exception as e:
+            return False, f"Hover on {element_info} - Error: {str(e)}"
+    
+    def _random_keypress(self):
+        """Perform random key press action"""
+        keys_to_try = [
+            (Keys.TAB, "Tab"),
+            (Keys.ENTER, "Enter"),
+            (Keys.ESCAPE, "Escape"),
+            (Keys.SPACE, "Space"),
+            (Keys.PAGE_DOWN, "Page Down"),
+            (Keys.PAGE_UP, "Page Up"),
+            (Keys.HOME, "Home"),
+            (Keys.END, "End")
+        ]
+        
+        key, description = random.choice(keys_to_try)
+        
+        try:
+            body = self.driver.find_element("tag name", "body")
+            body.send_keys(key)
+            return True, f"Key press: {description}"
+        except Exception as e:
+            return False, f"Key press: {description} - Error: {str(e)}"
+    
+    def _get_element_info(self, element):
+        """Get descriptive information about an element"""
+        try:
+            tag = element.tag_name
+            element_id = element.get_attribute('id')
+            element_class = element.get_attribute('class')
+            element_text = element.text[:20] if element.text else ""
+            
+            info_parts = [f"<{tag}"]
+            if element_id:
+                info_parts.append(f" id='{element_id}'")
+            if element_class:
+                info_parts.append(f" class='{element_class[:20]}'")
+            info_parts.append(">")
+            
+            if element_text:
+                info_parts.append(f" '{element_text}'")
+            
+            return "".join(info_parts)
+        except:
+            return f"<{element.tag_name}>"
+    
+    def _generate_test_data(self, element):
+        """Generate appropriate test data based on input type"""
+        try:
+            input_type = element.get_attribute('type')
+            placeholder = element.get_attribute('placeholder')
+            name = element.get_attribute('name')
+            
+            # Email inputs
+            if input_type == 'email' or 'email' in (name or '').lower():
+                return f"test{random.randint(1, 999)}@example.com"
+            
+            # Password inputs
+            elif input_type == 'password':
+                return f"TestPass{random.randint(100, 999)}"
+            
+            # Search inputs
+            elif input_type == 'search' or 'search' in (name or '').lower():
+                search_terms = ["automation", "testing", "selenium", "python", "QA"]
+                return random.choice(search_terms)
+            
+            # Number inputs
+            elif input_type == 'number':
+                return str(random.randint(1, 100))
+            
+            # URL inputs
+            elif input_type == 'url':
+                return "https://example.com"
+            
+            # Default text
+            else:
+                text_options = [
+                    f"Test User {random.randint(1, 999)}",
+                    f"Sample Text {random.randint(1, 999)}",
+                    "QA Automation Test",
+                    f"TestData{random.randint(1000, 9999)}",
+                    "Monkey Testing Input"
+                ]
+                return random.choice(text_options)
+                
+        except:
+            return f"TestInput{random.randint(1, 999)}"

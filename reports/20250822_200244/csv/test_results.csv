@@ -1,0 +1,22 @@
+Timestamp,Action Type,Element Info,Status,Error Message,Screenshot Path
+2025-08-22T20:04:52.719275,keypress,Key press: Page Down,SUCCESS,,
+2025-08-22T20:05:35.925633,hover,Hover on <button id='button' class='style-scope yt-icon-'>,SUCCESS,,
+2025-08-22T20:05:46.633784,scroll,Scroll to top,SUCCESS,,
+2025-08-22T20:05:47.813783,keypress,Key press: Enter,SUCCESS,,
+2025-08-22T20:06:35.960701,click,<a id='endpoint' class='yt-simple-endpoint s'> 'Subscriptions',SUCCESS,,
+2025-08-22T20:07:18.989425,hover,Hover on <a id='endpoint' class='yt-simple-endpoint s'> 'Shorts',SUCCESS,,
+2025-08-22T20:07:24.426476,scroll,Scroll left,SUCCESS,,
+2025-08-22T20:08:00.993427,hover,"Hover on <a class='Primer_Brand__Button'> 'Financial services
+M'",SUCCESS,,
+2025-08-22T20:08:49.507898,click,<button class='yt-spec-button-shape'>,SUCCESS,,
+2025-08-22T20:08:50.812570,keypress,Key press: Enter,SUCCESS,,
+2025-08-22T20:08:55.722786,scroll,Scroll up,SUCCESS,,
+2025-08-22T20:08:56.608464,scroll,Scroll right,SUCCESS,,
+2025-08-22T20:09:45.301656,click,<a class='footer-social-icon d'> 'GitHub on X',SUCCESS,,screenshots/20250822_200244/actions\200945_006_click_github.com.png
+2025-08-22T20:09:46.119684,scroll,Scroll left,SUCCESS,,
+2025-08-22T20:10:34.983374,click,<a id='endpoint' class='yt-simple-endpoint s'> 'Shorts',SUCCESS,,
+2025-08-22T20:10:35.789845,scroll,Scroll to bottom,SUCCESS,,
+2025-08-22T20:10:41.148169,scroll,Scroll left,SUCCESS,,
+2025-08-22T20:10:42.574957,keypress,Key press: End,SUCCESS,,
+2025-08-22T20:10:49.119273,scroll,Scroll left,SUCCESS,,
+2025-08-22T20:11:32.024526,hover,Hover on <button class='yt-spec-button-shape'>,SUCCESS,,
